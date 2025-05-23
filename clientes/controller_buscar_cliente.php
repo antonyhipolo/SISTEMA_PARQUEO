@@ -23,13 +23,13 @@ $query_buscars = $pdo->prepare("SELECT * FROM tb_clientes WHERE estado = '1'  AN
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Nombre:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="nombre_cliente<?php echo $id_map;?>">
             </div>
             </div>
             <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">DNI/Ruc:</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control">
+                <input type="number" class="form-control" id="Dni_ruc<?php echo $id_map;?>">
             </div>
             </div>
             <?php
@@ -39,13 +39,13 @@ $query_buscars = $pdo->prepare("SELECT * FROM tb_clientes WHERE estado = '1'  AN
             <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Nombre:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" value="<?php echo $nombre_cliente;?>">
+                <input type="text" class="form-control" id="nombre_cliente<?php echo $id_map;?>" value="<?php echo $nombre_cliente;?>">
              </div>
             </div>
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-2 col-form-label">DNI/Ruc:</label>
              <div class="col-sm-10">
-                <input type="number" class="form-control" value="<?php echo $Dni_Ruc_cliente;?>">
+                <input type="number" class="form-control" id="Dni_ruc<?php echo $id_map;?>" value="<?php echo $Dni_Ruc_cliente;?>">
              </div>
              </div>
             <?php

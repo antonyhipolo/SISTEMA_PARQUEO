@@ -104,7 +104,7 @@ include('layout/admin/datos_usuario_session.php');
                                     $mes = date ('m');
                                     $año = date ('Y');
                                 ?>
-                                  <input type="date" class="form-control" value="<?php echo $año."-".$mes."-".$dia;?>">
+                                  <input type="date" class="form-control" id="Fecha_ingreso<?php echo $id_map;?>" value="<?php echo $año."-".$mes."-".$dia;?>">
                                </div>
                              </div>
                              <div class="form-group row">
@@ -116,13 +116,30 @@ include('layout/admin/datos_usuario_session.php');
                                     $hora = date ('H');
                                     $minutos = date ('i');
                                 ?>
-                                  <input type="time" class="form-control" value="<?php echo $hora.":".$minutos;?>">
+                                  <input type="time" class="form-control" id="Hora_ingreso<?php echo $id_map;?>" value="<?php echo $hora.":".$minutos;?>">
+                               </div>
+                             </div>
+                             <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Cuviculo:</label>
+                               <div class="col-sm-8"> 
+                                <input type="text" class="form-control"  id="cuviculo<?php echo $id_map;?>" value="<?php echo $numero_espacio;?>">
                                </div>
                              </div>
                            </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Imprimir Ticheck</button>
+                            <button type="button" class="btn btn-primary" id="btn_registrar_ticket<?php echo $id_map;?>">Imprimir Ticheck</button>
+                            <script>
+                              $ ('#btn_registrar_ticket<?php echo $id_map;?>').click(function(){
+                                var placa =$('#placa_buscar<?php echo $id_map;?>').val();
+                                var nombres =$('#nombre_cliente<?php echo $id_map;?>').val();
+                                var Dni_ruc =$('#Dni_ruc<?php echo $id_map;?>').val();
+                                var Fecha_ingreso =$('#Fecha_ingreso<?php echo $id_map;?>').val();
+                                var Hora_ingreso =$('#Hora_ingreso<?php echo $id_map;?>').val();
+                                var Cuviculo =$('#cuviculo<?php echo $id_map;?>').val();
+                                
+                              });
+                            </script>
                             </div>
                         </div>
                       </div>
