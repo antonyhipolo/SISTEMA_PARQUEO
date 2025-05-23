@@ -85,7 +85,7 @@ $html = '
 	<b>Fecha de Ingreso:</b> 17/05/2025<br>
 	<b>Hora de Ingreso:</b> 22:48
 	-----------------------------------------------------------------------------------<br>
-	<b>USUARIO (A):</b> HIPOLO MARCELO KENYI CULO
+	<b>USUARIO (A):</b> HIPOLO MARCELO
 	</div>
 	
 	</p>
