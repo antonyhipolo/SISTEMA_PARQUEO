@@ -198,7 +198,7 @@ include('layout/admin/datos_usuario_session.php');
                     $query_datos_cliente ->execute();
                     $datos_clientes = $query_datos_cliente->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($datos_clientes as $datos_cliente) {
-                      $id_ticket = $datos_cliente['nombres'];
+                      $id_ticket = $datos_cliente['id_ticket'];
                       $placa_auto = $datos_cliente['placa_auto'];
                       $nombres = $datos_cliente['nombres'];
                       $Dni_ruc = $datos_cliente['Dni_ruc'];
@@ -263,18 +263,16 @@ include('layout/admin/datos_usuario_session.php');
                              </div>
                               </div>
                              <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Volver a Imprimir</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                <a href="tickets/controller_cancelar_tickets.php?id=<?php echo $id_ticket;?>&&cuviculo=<?php echo $Cuviculo;?>" class="btn btn-warning">Cancelar Ticket</a>
+                                <a href="tickets/reimprimir_ticket.php?id=<?php echo $id_ticket;?>" class="btn btn-primary">Volver a Imprimir</a>
+                                
                                 <button type="button" class="btn btn-success">Facturar</button>
                              </div>
                             </div>
                          </div>
                         </div>
-                      <script>
-                          $('#btn_ocupado<?php echo $id_map;?>').click(function(){
-                            
-                          });
-                      </script>
+                      
                       <p><?php echo $estado_espacio;?></p>
                     </center>
                   </div>

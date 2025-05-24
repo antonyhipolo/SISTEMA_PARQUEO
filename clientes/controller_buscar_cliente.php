@@ -51,4 +51,36 @@ $query_buscars = $pdo->prepare("SELECT * FROM tb_clientes WHERE estado = '1'  AN
              </div>
             <?php
         }
+
+        // Busca la placa en la tabla tickets
+        $contador_ticket = 0;
+        $query_tickets = $pdo->prepare("SELECT * FROM tb_tickes WHERE placa_auto = '$Placa' AND estado_ticket = 'OCUPADO'  AND estado = '1' ");
+        $query_tickets ->execute();
+        $datos_tickets = $query_tickets->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($datos_tickets as $datos_ticket) {
+          $contador_ticket = $contador_ticket + 1;
+        }
+        if ($contador_ticket == "0") {
+        echo "No hay Ningun registro igual";
+            ?>
+            <script>
+               $('#btn_registrar_ticket<?php echo $id_map;?>').removeAttr('disabled');  
+            </script>
+            <?php
+        }else {
+        //echo "Este Vehiculo ya se encuentra dentro del parqueo";
+        ?>
+        <div class="alert alert-danger">
+                Este Vehicúlo ya se encuentra dentro del parqueo
+        </div>
+        <script>
+            $('#btn_registrar_ticket<?php echo $id_map;?>').attr('disabled','disabled');
+        </script>
+        <?php
+        }
+
+
+
       ?>
+
+
