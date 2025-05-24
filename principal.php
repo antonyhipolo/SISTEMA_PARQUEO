@@ -158,8 +158,16 @@ include('layout/admin/datos_usuario_session.php');
                                           $('#respuesta_ticket').html(datos);
                                             });
                                   
-                                  var url_2 = 'tickets/controller_registrar_tickets.php'
-                                      $.get(url_2, {placa:placa, nombres:nombres, Dni_ruc:Dni_ruc, Fecha_ingreso:Fecha_ingreso, Hora_ingreso:Hora_ingreso, Cuviculo:Cuviculo, user_session:user_session}, function(datos){
+                                  
+
+                                  var url_2 = 'clientes/controller_registrar_cientes.php'
+                                      $.get(url_2, {nombres:nombres, Dni_ruc:Dni_ruc, placa:placa}, function(datos){
+                                          $('#respuesta_ticket').html(datos);
+                                            });
+
+
+                                  var url_3 = 'tickets/controller_registrar_tickets.php'
+                                      $.get(url_3, {nombres:nombres, Dni_ruc:Dni_ruc, placa:placa, Fecha_ingreso:Fecha_ingreso, Hora_ingreso:Hora_ingreso, Cuviculo:Cuviculo, user_session:user_session}, function(datos){
                                           $('#respuesta_ticket').html(datos);
                                             });
                                 } 
