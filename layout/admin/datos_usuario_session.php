@@ -4,7 +4,7 @@
 if(isset($_SESSION ['usuario_sesion'])){
     $usuario_session = $_SESSION['usuario_sesion'];
 
-$query_usuario_session = $pdo->prepare("SELECT * FROM tb_usuarios WHERE email = '$usuario_session' AND estado = '1' ");
+        $query_usuario_session = $pdo->prepare("SELECT * FROM tb_usuarios WHERE email = '$usuario_session' AND estado = '1' ");
         $query_usuario_session ->execute();
         $usuarios_sessions = $query_usuario_session->fetchAll(PDO::FETCH_ASSOC);
     foreach ($usuarios_sessions as $usuarios_session) {

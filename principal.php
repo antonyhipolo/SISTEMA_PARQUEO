@@ -62,8 +62,8 @@ include('layout/admin/datos_usuario_session.php');
                            </div>
                           <div class="modal-body">
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Placa:</label>
-                               <div class="col-sm-7">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Placa:<span><b style="color: red;">*</b></span></label>
+                               <div class="col-sm-6">
                                   <input type="text" style="text-transform: uppercase" class="form-control" id="placa_buscar<?php echo $id_map;?>">
                                </div>
                                <div class="col-sm-3">
@@ -76,12 +76,13 @@ include('layout/admin/datos_usuario_session.php');
                                   <script>
                                     $('#btn_buscar_cliente<?php echo $id_map;?>').click(function() {
                                       var Placa = $('#placa_buscar<?php echo $id_map;?>').val();
+                                      var id_map ="<?php echo $id_map;?>"
                                       if (Placa== "") {
                                         alert('Debe de ingresar el campo Placa');
                                                $('#placa_buscar<?php echo $id_map;?>').focus();
                                       }else {
                                         var url = 'clientes/controller_buscar_cliente.php'
-                                           $.get(url, {Placa:Placa}, function(datos){
+                                           $.get(url, {Placa:Placa, id_map:id_map}, function(datos){
                                               $('#respuesta_buscar_cliente<?php echo $id_map;?>').html(datos);
                                           });
                                        }
@@ -137,9 +138,30 @@ include('layout/admin/datos_usuario_session.php');
                                 var Fecha_ingreso =$('#Fecha_ingreso<?php echo $id_map;?>').val();
                                 var Hora_ingreso =$('#Hora_ingreso<?php echo $id_map;?>').val();
                                 var Cuviculo =$('#cuviculo<?php echo $id_map;?>').val();
+                                var user_session ="<?php echo $usuario_session;?>";
                                 
+                                if (placa == "") {
+                                  alert('Debe de Ingresar un Numero de Placa');
+                                  $('#placa_buscar<?php echo $id_map;?>').focus();
+                                }else  if(nombres == ""){
+                                  alert('Debe de Ingresar un Nombre al cliente');
+                                  $('#nombre_cliente<?php echo $id_map;?>').focus();
+                                }else if(Dni_ruc == ""){
+                                  alert('Debe de Ingresar un Numero de Dni o Ruc del Cliente');
+                                  $('#Dni_ruc<?php echo $id_map;?>').focus();
+                                }
+                                
+                                else{
+                                  var url = 'tickets/controller_registrar_tickets.php'
+                                      $.get(url, {placa:placa, nombres:nombres, Dni_ruc:Dni_ruc, Fecha_ingreso:Fecha_ingreso, Hora_ingreso:Hora_ingreso, Cuviculo:Cuviculo, user_session:user_session}, function(datos){
+                                          $('#respuesta_ticket').html(datos);
+                                            });
+                                } 
                               });
                             </script>
+                            </div>
+                            <div id="respuesta_ticket">
+                              
                             </div>
                         </div>
                       </div>
