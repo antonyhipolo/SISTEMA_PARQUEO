@@ -1,6 +1,8 @@
 <?php 
 include('../app/config.php');
 
+$placa = $_GET['placa'];
+$placa = strtoupper($placa); //trasforma todo a mayuscula
 $nombres = $_GET['nombres'];
 $Dni_ruc = $_GET['Dni_ruc'];
 $Cuviculo = $_GET['Cuviculo'];
@@ -12,9 +14,10 @@ date_default_timezone_set("America/Lima");
 $fechaHora = date("y-m-d h:i:s");
 
 $sentencia = $pdo->prepare('INSERT INTO tb_tickes
-(nombres, Dni_ruc, Cuviculo, Fecha_ingreso, Hora_ingreso, user_sesion, fyh_creacion, estado)
-VALUES ( :nombres, :Dni_ruc, :Cuviculo, :Fecha_ingreso, :Hora_ingreso, :user_sesion, :fyh_creacion, :estado)');
+(placa_auto, nombres, Dni_ruc, Cuviculo, Fecha_ingreso, Hora_ingreso, user_sesion, fyh_creacion, estado)
+VALUES ( :placa_auto, :nombres, :Dni_ruc, :Cuviculo, :Fecha_ingreso, :Hora_ingreso, :user_sesion, :fyh_creacion, :estado)');
 
+$sentencia->bindParam('placa_auto',$placa);
 $sentencia->bindParam('nombres',$nombres);
 $sentencia->bindParam('Dni_ruc',$Dni_ruc);
 $sentencia->bindParam('Cuviculo',$Cuviculo);
