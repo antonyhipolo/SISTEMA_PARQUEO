@@ -152,8 +152,14 @@ include('layout/admin/datos_usuario_session.php');
                                 }
                                 
                                 else{
-                                  var url = 'tickets/controller_registrar_tickets.php'
-                                      $.get(url, {placa:placa, nombres:nombres, Dni_ruc:Dni_ruc, Fecha_ingreso:Fecha_ingreso, Hora_ingreso:Hora_ingreso, Cuviculo:Cuviculo, user_session:user_session}, function(datos){
+                                  
+                                  var url_1 = 'parqueo/controller_cambiar_estado_ocupado.php'
+                                      $.get(url_1, {Cuviculo:Cuviculo}, function(datos){
+                                          $('#respuesta_ticket').html(datos);
+                                            });
+                                  
+                                  var url_2 = 'tickets/controller_registrar_tickets.php'
+                                      $.get(url_2, {placa:placa, nombres:nombres, Dni_ruc:Dni_ruc, Fecha_ingreso:Fecha_ingreso, Hora_ingreso:Hora_ingreso, Cuviculo:Cuviculo, user_session:user_session}, function(datos){
                                           $('#respuesta_ticket').html(datos);
                                             });
                                 } 
