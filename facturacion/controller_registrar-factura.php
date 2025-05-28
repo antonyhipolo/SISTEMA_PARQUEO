@@ -17,35 +17,24 @@ $fechaHora = date("y-m-d h:i:s");
 //fecha de ingreso y salida
 $Fecha_ingreso = $_GET['Fecha_ingreso'];
 $Hora_ingreso = $_GET['Hora_ingreso'];
-$Fecha_salida = date('d/m/y');
+$Fecha_salida = date('Y-m-d');
 $Hora_salida = date('H:i');
 
+/////////////calcul
+$fecha_hora_ingreso = $Fecha_ingreso." ".$Hora_ingreso;
+$fecha_hora_salida = $Fecha_salida." ".$Hora_salida;
+
+
+$fecha_hora_ingreso = new DateTime($fecha_hora_ingreso);
+$fecha_hora_salida = new DateTime($fecha_hora_salida);
+$diff = $fecha_hora_ingreso->diff($fecha_hora_salida);
+$tiempo = $diff->days." días con ".$diff->h." horas con ".$diff->i." minutos";
+
+
 ///////////////////calculo por días////////////////////////////////////////
-$Fecha_salida_ára_calcular = date('Y/m/d');
-$dato1 = new DateTime($Fecha_ingreso);
-$dato2 = new DateTime($Fecha_salida_ára_calcular);
-$días_calculado = $dato1->diff($dato2);
-$días_calculado->days;
-$día_imprimir_dif = $días_calculado->days;
+
 
 ///////////////////////////////////////////////////////////////////////////
-
-//////////////////calcula el tiempo del parqueo////////////////////////////
-$c_hora_ingreso = strtotime($Hora_ingreso); 
-$c_hora_salida = strtotime($Hora_salida);
-$diferencia_de_horas = ($c_hora_salida - $c_hora_ingreso)/3600;
-$hora_calculado = (int)$diferencia_de_horas;
-$diferencia_minutos = ($c_hora_salida - $c_hora_ingreso)/60;
-$calculando =$hora_calculado * 60;
-$minutos_calculado = $diferencia_minutos-$calculando;
-if ($día_imprimir_dif =="0") {
-     $tiempo =$hora_calculado." horas  y  ".$minutos_calculado." minutos";
-} else {
-    $tiempo =$día_imprimir_dif." días con ". $hora_calculado." horas  y  ".$minutos_calculado." minutos";
-}
-
-////////////////////////////////////////////////////////////////////////////
-
 
 
 
@@ -53,7 +42,7 @@ $cuviculo = $_GET['cuviculo'];
 $detalle = "Servicio de Parqueo de ".$tiempo;
 
 /////////////////////////calcula el precio del cliente en horas/////////////////////
-$query_precios_horas = $pdo->prepare("SELECT * FROM tb_precios WHERE cantidad = '$hora_calculado' AND  detalle IN ('HORA', 'HORAS') AND estado = '1' ");
+$query_precios_horas = $pdo->prepare("SELECT * FROM tb_precios WHERE cantidad = '$diff->h' AND  detalle IN ('HORA', 'HORAS') AND estado = '1' ");
         $query_precios_horas ->execute();
         $datos_precios_horas = $query_precios_horas->fetchAll(PDO::FETCH_ASSOC);
         foreach ($datos_precios_horas as $datos_precios_hora) {
@@ -66,7 +55,7 @@ $query_precios_horas = $pdo->prepare("SELECT * FROM tb_precios WHERE cantidad = 
 
 /////////////////////////calcula el precio del cliente en días/////////////////////
 $precios_días =0;
-$query_precios_días = $pdo->prepare("SELECT * FROM tb_precios WHERE cantidad = '$día_imprimir_dif' AND detalle IN ('DIA', 'DIAS') AND estado = '1' ");
+$query_precios_días = $pdo->prepare("SELECT * FROM tb_precios WHERE cantidad = '$diff->days' AND detalle IN ('DIA', 'DIAS') AND estado = '1' ");
         $query_precios_días ->execute();
         $datos_precios_días = $query_precios_días->fetchAll(PDO::FETCH_ASSOC);
         foreach ($datos_precios_días as $datos_precios_día) {
@@ -131,6 +120,29 @@ $sentencia->bindParam('estado',$estado_del_registro);
 
 if($sentencia->execute()){
 echo 'success';
+
+$estado_espacio = "LIBRE";
+date_default_timezone_set("America/Lima");
+$fechaHora = date("y-m-d h:i:s");
+$sentencia = $pdo->prepare("UPDATE tb_mapeos SET
+estado_espacio =:estado_espacio,
+fyh_actualizacion = :fyh_actualizacion
+WHERE numero_espacio = :numero_espacio");
+$sentencia->bindParam(':estado_espacio',$estado_espacio);
+$sentencia->bindParam(':fyh_actualizacion',$fechaHora);
+$sentencia->bindParam(':numero_espacio',$cuviculo);
+$sentencia->execute();
+    
+
+$estado_espacio_ticket = "LIBRE";
+
+$sentencia_ticket = $pdo->prepare("UPDATE tb_tickes SET
+estado_ticket = :estado_ticket WHERE Fecha_ingreso = :Fecha_ingreso AND Hora_ingreso = :Hora_ingreso");
+
+$sentencia_ticket->bindParam(':estado_ticket',$estado_espacio_ticket);
+$sentencia_ticket->bindParam(':Fecha_ingreso',$Fecha_ingreso);
+$sentencia_ticket->bindParam(':Hora_ingreso',$Hora_ingreso);
+$sentencia_ticket->execute();
 
 ?>
     <script>location.href = "facturacion/factura.php";</script>

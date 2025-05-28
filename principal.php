@@ -94,6 +94,7 @@ $query_facturaciones = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estad
                                   </button>
                                   <script>
                                     $('#btn_buscar_cliente<?php echo $id_map;?>').click(function() {
+                                      busquedaRealizada<?php echo $id_map;?> = true
                                       var Placa = $('#placa_buscar<?php echo $id_map;?>').val();
                                       var id_map ="<?php echo $id_map;?>"
                                       if (Placa== "") {
@@ -150,7 +151,9 @@ $query_facturaciones = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estad
                             <a href="<?php echo $URL;?>/principal.php" class="btn btn-danger">Cancelar</a>
                             <button type="button" class="btn btn-primary" id="btn_registrar_ticket<?php echo $id_map;?>">Imprimir Ticheck</button>
                             <script>
+                              var busquedaRealizada<?php echo $id_map;?> = false;
                               $ ('#btn_registrar_ticket<?php echo $id_map;?>').click(function(){
+                              
                                 var placa =$('#placa_buscar<?php echo $id_map;?>').val();
                                 var nombres =$('#nombre_cliente<?php echo $id_map;?>').val();
                                 var Dni_ruc =$('#Dni_ruc<?php echo $id_map;?>').val();
@@ -158,13 +161,16 @@ $query_facturaciones = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estad
                                 var Hora_ingreso =$('#Hora_ingreso<?php echo $id_map;?>').val();
                                 var Cuviculo =$('#cuviculo<?php echo $id_map;?>').val();
                                 var user_session ="<?php echo $usuario_session;?>";
-                                
                                 if (placa == "") {
                                   alert('Debe de Ingresar un Numero de Placa');
                                   $('#placa_buscar<?php echo $id_map;?>').focus();
+                                }else if (!busquedaRealizada<?php echo $id_map;?>) {
+                                  alert('Debe realizar la búsqueda primero antes de imprimir el tiqueck');
+                                    $('#btn_buscar_cliente<?php echo $id_map;?>').focus();
                                 }else  if(nombres == ""){
                                   alert('Debe de Ingresar un Nombre al cliente');
                                   $('#nombre_cliente<?php echo $id_map;?>').focus();
+                                  return false;
                                 }else if(Dni_ruc == ""){
                                   alert('Debe de Ingresar un Numero de Dni o Ruc del Cliente');
                                   $('#Dni_ruc<?php echo $id_map;?>').focus();
