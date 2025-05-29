@@ -17,7 +17,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <a class="navbar-brand" href="#">
-    <img src="<?php echo $URL;?>/public/imagenes/imagen logo.png" width="50" height="30" class="d-inline-block align-top" alt="">
+    <img src="<?php echo $URL;?>/public/imagenes/imagen_logo.png" width="50" height="30" class="d-inline-block align-top" alt="">
     SISPARQUEO
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
