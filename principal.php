@@ -165,7 +165,7 @@ $query_facturaciones = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estad
                                   alert('Debe de Ingresar un Numero de Placa');
                                   $('#placa_buscar<?php echo $id_map;?>').focus();
                                 }else if (!busquedaRealizada<?php echo $id_map;?>) {
-                                  alert('Debe realizar la búsqueda primero antes de imprimir el tiqueck');
+                                  alert('Debe realizar la búsqueda primero antes de imprimir el ticket');
                                     $('#btn_buscar_cliente<?php echo $id_map;?>').focus();
                                 }else  if(nombres == ""){
                                   alert('Debe de Ingresar un Nombre al cliente');
@@ -288,7 +288,7 @@ $query_facturaciones = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estad
                              </div>
                               </div>
                              <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                <a href="<?php echo $URL;?>/principal.php" class="btn btn-danger">Salir</a>
                                 <a href="tickets/controller_cancelar_tickets.php?id=<?php echo $id_ticket;?>&&cuviculo=<?php echo $Cuviculo;?>" class="btn btn-warning">Cancelar Ticket</a>
                                 <a href="tickets/reimprimir_ticket.php?id=<?php echo $id_ticket;?>" class="btn btn-primary">Volver a Imprimir</a>
                                 
@@ -308,6 +308,7 @@ $query_facturaciones = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estad
                                   ?>
                                   <script>
                                   $('#btn_facturar<?php echo $id_map;?>').click(function(){
+                                    var id_map = "<?php echo $id_map;?>"
                                     var id_informacion = "<?php echo $id_informacion;?>"
                                     var nro_factura = "<?php echo $contador_del_numero_de_factura;?>"
                                     var id_cliente = "<?php echo $id_cliente_facturacion;?>"
@@ -317,7 +318,7 @@ $query_facturaciones = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estad
                                     var user_sesion = "<?php echo $user_sesion;?>"
                                     /// enviar al controlador
                                     var url_4 = 'facturacion/controller_registrar-factura.php'
-                                      $.get(url_4, {id_informacion:id_informacion, nro_factura:nro_factura, id_cliente:id_cliente, Fecha_ingreso:Fecha_ingreso, Hora_ingreso:Hora_ingreso, cuviculo:cuviculo, user_sesion:user_sesion}, function(datos){
+                                      $.get(url_4, {id_map:id_map, id_informacion:id_informacion, nro_factura:nro_factura, id_cliente:id_cliente, Fecha_ingreso:Fecha_ingreso, Hora_ingreso:Hora_ingreso, cuviculo:cuviculo, user_sesion:user_sesion}, function(datos){
                                           $('#respuesta_factura<?php echo $id_map;?>').html(datos);
                                             });
                                   });

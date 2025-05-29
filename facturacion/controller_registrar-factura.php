@@ -1,7 +1,7 @@
 <?php
 include('../app/config.php');
 include('literal.php');
-
+$id_map = $_GET['id_map'];
 $id_informacion = $_GET['id_informacion'];
 $nro_factura = $_GET['nro_factura'];
 $id_cliente = $_GET['id_cliente'];
@@ -23,8 +23,6 @@ $Hora_salida = date('H:i');
 /////////////calcul
 $fecha_hora_ingreso = $Fecha_ingreso." ".$Hora_ingreso;
 $fecha_hora_salida = $Fecha_salida." ".$Hora_salida;
-
-
 $fecha_hora_ingreso = new DateTime($fecha_hora_ingreso);
 $fecha_hora_salida = new DateTime($fecha_hora_salida);
 $diff = $fecha_hora_ingreso->diff($fecha_hora_salida);
@@ -62,6 +60,29 @@ $query_precios_días = $pdo->prepare("SELECT * FROM tb_precios WHERE cantidad = 
            $precios_días = $datos_precios_día['precio'];
         }
 ////////////////////////////////////////////////////////////////////////////////////
+
+$total_minutos = ($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i;
+$menos_de_una_hora = ($total_minutos < 60);
+if($menos_de_una_hora) {
+    
+    ?>
+        <div class="alert alert-danger">
+                No se puede facturar menos de 1 hora de estacionamiento
+        </div>
+        <script>
+            $('#btn_facturar<?php echo $id_map;?>').attr('disabled','disabled');
+            
+        </script>
+        <?php
+    
+}else {
+        ?>
+            <script>
+               $('#btn_facturar<?php echo $id_map;?>').removeAttr('disabled');  
+            </script>
+            <?php
+      
+
 $precio_final = $precios_horas + $precios_días;
 
 
@@ -151,3 +172,4 @@ $sentencia_ticket->execute();
 echo 'error al registrar a la base de datos';
 }
 
+}

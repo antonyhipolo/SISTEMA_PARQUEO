@@ -1,0 +1,144 @@
+/******************************
+ * Selector "Mostrar X Productos" 
+ ******************************/
+div.dataTables_wrapper div.dataTables_length select {
+  border: 1px solid #ced4da !important;
+  border-radius: 20px !important;
+  padding: 6px 20px 6px 12px !important;
+  height: 38px !important;
+  font-size: 14px !important;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+div.dataTables_wrapper div.dataTables_length select:hover {
+  border-color: #bdadad !important;
+}
+
+div.dataTables_wrapper div.dataTables_length select:focus {
+  border-color: #0dcaf0 !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25) !important;
+}
+
+/******************************
+ * Buscador Ejecutivo 
+ ******************************/
+div.dataTables_wrapper div.dataTables_filter input {
+  border: 1px solid #ced4da !important;
+  border-radius: 20px !important;
+  padding: 8px 16px !important;
+  height: 38px !important;
+  font-size: 14px !important;
+  background-color: white;
+  transition: all 0.3s ease;
+  box-shadow: none !important;
+  width: 250px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter input:focus {
+  border-color: #0dcaf0 !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25) !important;
+}
+
+/******************************
+ * Botones de Paginación 
+ ******************************/
+div.dataTables_wrapper .dataTables_paginate .paginate_button {
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  padding: 0 !important;
+  margin: 0 4px !important;
+  border: 1px solid #dee2e6 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+div.dataTables_wrapper .dataTables_paginate .paginate_button:focus {
+  border-color: #0dcaf0 !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25) !important;
+}
+
+/* Botones de navegación (Primero, Anterior, Siguiente, Último) */
+div.dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+div.dataTables_wrapper .dataTables_paginate .paginate_button.next {
+  font-size: 0;
+  position: relative;
+}
+
+div.dataTables_wrapper .dataTables_paginate .paginate_button.previous:after {
+  content: "←";
+  font-size: 14px;
+}
+
+div.dataTables_wrapper .dataTables_paginate .paginate_button.next:after {
+  content: "→";
+  font-size: 14px;
+}
+
+/* Eliminar hover en números de página */
+div.dataTables_wrapper .dataTables_paginate .paginate_button:not(.previous):not(.next):not(.first):not(.last):hover {
+  background: transparent !important;
+  color: inherit !important;
+  border-color: #dee2e6 !important;
+}
+
+/* Estilo para la página actual */
+div.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #f8f9fa !important;
+  color: #495057 !important;
+  border-color: #dee2e6 !important;
+  font-weight: bold;
+}
+
+/******************************
+ * Ajustes para modo oscuro 
+ ******************************/
+html.dark div.dataTables_wrapper div.dataTables_length select {
+  border-color: #495057 !important;
+  background-color: #343a40 !important;
+  color: #f8f9fa !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23f8f9fa' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+}
+
+html.dark div.dataTables_wrapper div.dataTables_filter input {
+  border-color: #495057 !important;
+  background-color: #343a40 !important;
+  color: #f8f9fa !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23adb5bd' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+}
+
+html.dark div.dataTables_wrapper div.dataTables_filter input:focus {
+  border-color: #0dcaf0 !important;
+}
+
+html.dark div.dataTables_wrapper .dataTables_paginate .paginate_button {
+  border-color: #495057 !important;
+  color: #f8f9fa !important;
+}
+
+html.dark div.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #495057 !important;
+  color: #fff !important;
+}
+
+html.dark div.dataTables_wrapper .dataTables_paginate .paginate_button:focus {
+  border-color: #0dcaf0 !important;
+}
